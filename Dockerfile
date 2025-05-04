@@ -1,7 +1,7 @@
-FROM library/tomcat:9-jre11
+FROM library/tomcat:9-jre21
 
 ENV ARCH=amd64 \
-  GUAC_VER=1.3.0 \
+  GUAC_VER=1.5.5 \
   GUACAMOLE_HOME=/app/guacamole \
   PG_MAJOR=9.6 \
   PGDATA=/config/postgres \
@@ -10,10 +10,10 @@ ENV ARCH=amd64 \
 
 # Apply the s6-overlay
 
-RUN curl -SLO "https://github.com/just-containers/s6-overlay/releases/download/v1.20.0.0/s6-overlay-${ARCH}.tar.gz" \
-  && tar -xzf s6-overlay-${ARCH}.tar.gz -C / \
-  && tar -xzf s6-overlay-${ARCH}.tar.gz -C /usr ./bin \
-  && rm -rf s6-overlay-${ARCH}.tar.gz \
+RUN curl -SLO "https://github.com/just-containers/s6-overlay/releases/download/v3.2.0.2/s6-overlay-${ARCH}.tar.xz" \
+  && tar -xf s6-overlay-${ARCH}.tar.xz -C / \
+  && tar -xf s6-overlay-${ARCH}.tar.xz -C /usr ./bin \
+  && rm -rf s6-overlay-${ARCH}.tar.xz \
   && mkdir -p ${GUACAMOLE_HOME} \
     ${GUACAMOLE_HOME}/lib \
     ${GUACAMOLE_HOME}/extensions
@@ -24,7 +24,7 @@ WORKDIR ${GUACAMOLE_HOME}
 RUN apt-get update && apt-get install -y \
     libcairo2-dev libjpeg62-turbo-dev libpng-dev \
     libossp-uuid-dev libavcodec-dev libavutil-dev \
-    libswscale-dev freerdp2-dev libfreerdp-client2-2 libpango1.0-dev \
+    libswscale-dev freerdp2-dev freerdp3-dev libfreerdp-client2-2 libfreerdp-client3-3 libpango1.0-dev \
     libssh2-1-dev libtelnet-dev libvncserver-dev \
     libpulse-dev libssl-dev libvorbis-dev libwebp-dev libwebsockets-dev \
     ghostscript postgresql-${PG_MAJOR} \
