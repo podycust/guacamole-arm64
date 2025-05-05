@@ -1,6 +1,7 @@
 FROM debian:bookworm-slim
 
 ENV ARCH=aarch64 \
+  S6_OVERLAY_VERSION = "3.2.0.3" \
   GUAC_VER=1.5.5 
 
 ARG DEBIAN_RELEASE=bookworm-backports
