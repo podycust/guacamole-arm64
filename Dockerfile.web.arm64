@@ -55,7 +55,7 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-${ARCH}.tar.xz \
 
 WORKDIR ${GUACAMOLE_HOME}
 
-
+RUN echo ${CATALINA_HOME}
 
 # Install guacamole-client and postgres auth adapter
 RUN set -x \
