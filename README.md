@@ -12,12 +12,12 @@ docker build \
   . \
   -f Dockerfile.guacd.arm64 \
   --platform linux/arm64/v8 \
-  -t bauxogeno/guacamole-arm-build:latest
+  -t podycust/guacamole-arm-build:latest
 ```
 ### Start container
 ```shell
 docker run \
-    bauxogeno/guacamole-arm-build:latest
+    podycust/guacamole-arm-build:latest
 ```
 
 ----------
@@ -27,7 +27,7 @@ docker run \
   --platform linux/arm64/v8 \
   . \
   -f Dockerfile.web.arm64 \
-  -t bauxogeno/guac-web-arm64:latest
+  -t podycust/guac-web-arm64:latest
 ```
 
 ----------
@@ -47,13 +47,13 @@ docker run \
     -p 8180:8080 \
     -v </path/to/config>:/config \
     -e "EXTENSIONS=auth-duo" \
-    bauxogeno/guacamole:latest
+    podycust/guacamole:latest
 
 docker run \
     -p 8180:8080 \
     -v ${PWD}/data/config:/config \
     -e "EXTENSIONS=auth-duo" \
-    bauxogeno/guacamole:latest
+    podycust/guacamole:latest
 ```
 
 #### Parameters
@@ -85,7 +85,7 @@ networks:
 services: 
   guacamole:
     container_name: compose_guacamole  
-    image: bauxogeno/guacamole:latest
+    image: podycust/guacamole:latest
     ports: 
       - 8180:8080
     volumes: 
