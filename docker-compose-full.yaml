@@ -9,7 +9,7 @@ services:
 
   guacd:
     container_name: compose_guacd  
-    image: bauxogeno/guacamole-arm-build:latest
+    image: podycust/guacamole-arm-build:latest
     ports: 
       - 4822/tcp    
     networks:
@@ -19,7 +19,7 @@ services:
     container_name: compose_guacamole  
     depends_on:
     - guacd    
-    image: bauxogeno/guac-web-arm64:latest
+    image: podycust/guac-web-arm64:latest
     links:
     - guacd
     ports: 
