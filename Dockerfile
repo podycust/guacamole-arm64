@@ -1,6 +1,7 @@
 FROM library/tomcat:9-jre21
 
 ENV ARCH=amd64 \
+  S6_OVERLAY_VERSION = "3.2.0.3" \
   GUAC_VER=1.5.5 \
   GUACAMOLE_HOME=/app/guacamole \
   PG_MAJOR=9.6 \
@@ -10,10 +11,20 @@ ENV ARCH=amd64 \
 
 # Apply the s6-overlay
 
-RUN curl -SLO "https://github.com/just-containers/s6-overlay/releases/download/v3.2.0.2/s6-overlay-${ARCH}.tar.xz" \
-  && tar -xf s6-overlay-${ARCH}.tar.xz -C / \
-  && tar -xf s6-overlay-${ARCH}.tar.xz -C /command ./bin \
-  && rm -rf s6-overlay-${ARCH}.tar.xz \
+#RUN curl -SLO "https://github.com/just-containers/s6-overlay/releases/download/v3.2.0.2/s6-overlay-${ARCH}.tar.xz" 
+  #&& tar -xf s6-overlay-${ARCH}.tar.xz -C / \
+  #&& tar -xf s6-overlay-${ARCH}.tar.xz -C /command ./bin \
+  #&& rm -rf s6-overlay-${ARCH}.tar.xz \
+ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+
+ # Extract the scripts at the container root
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+
+# Download the binaries to the temporal directory
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${ARCH}.tar.xz /tmp
+
+# Extract the scripts atthe container root
+RUN tar -C / -Jxpf /tmp/s6-overlay-${ARCH}.tar.xz
   && mkdir -p ${GUACAMOLE_HOME} \
     ${GUACAMOLE_HOME}/lib \
     ${GUACAMOLE_HOME}/extensions
