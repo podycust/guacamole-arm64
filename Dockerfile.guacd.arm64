@@ -81,5 +81,6 @@ RUN curl -SLOk "https://dlcdn.apache.org/guacamole/${GUAC_VER}/source/guacamole-
   && ldconfig
 
 COPY root/etc/services.d/guacd /etc/services.d/guacd
+RUN chmod -R +x /etc/services.d/*
 
 ENTRYPOINT [ "/init" ]
