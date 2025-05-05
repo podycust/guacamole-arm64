@@ -93,9 +93,9 @@ COPY root/etc/services.d/guacamole /etc/services.d/guacamole
 COPY root/etc/services.d/postgres /etc/services.d/postgres
 
 COPY root/etc/cont-init.d /etc/cont-init.d
-RUN chmod +x /etc/cont-init.d/30-defaults.sh
-RUN chmod +x /etc/cont-init.d/40-postgres.sh
-RUN chmod +x /etc/cont-init.d/50-extensions
+#RUN chmod +x /etc/cont-init.d/30-defaults.sh
+#RUN chmod +x /etc/cont-init.d/40-postgres.sh
+#RUN chmod +x /etc/cont-init.d/50-extensions
 COPY root/app/guacamole /app/guacamole
 
 ENTRYPOINT [ "/init" ]
