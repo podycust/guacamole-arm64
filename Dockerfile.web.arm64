@@ -15,8 +15,8 @@ RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-k
 
 # Add repository for specified Debian release if not already present in
 # sources.list
-RUN grep " bookworm " /etc/apt/sources.list || echo >> /etc/apt/sources.list \
-    "deb http://deb.debian.org/debian bookworm main contrib non-free"
+#RUN grep " bookworm " /etc/apt/sources.list || echo >> /etc/apt/sources.list \
+#    "deb http://deb.debian.org/debian bookworm main contrib non-free"
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y \
     #libssh2-1-dev libtelnet-dev libvncserver-dev \
     #libpulse-dev libssl-dev libvorbis-dev libwebp-dev libwebsockets-dev \
     #ghostscript \
+    xz-utils \
     postgresql-${POSTGRES_VERSION} \
   && rm -rf /var/lib/apt/lists/*
 
