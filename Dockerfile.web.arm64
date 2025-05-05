@@ -6,12 +6,12 @@ ENV ARCH=aarch64 \
   GUACAMOLE_HOME=/app/guacamole \
   GUACAMOLE_CTX_PATH=guacamole \
   PGDATA=/config/postgres \
-  POSTGRES_VERSION=9.6 \
+  POSTGRES_VERSION=16 \
   POSTGRES_USER=guacamole \
   POSTGRES_DB=guacamole_db
 
-RUN echo "deb http://apt.postgresql.org/pub/repos/apt nobe-pgdg main" > /etc/apt/sources.list.d/pgdg.list
-RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+#RUN echo "deb http://apt.postgresql.org/pub/repos/apt nobe-pgdg main" > /etc/apt/sources.list.d/pgdg.list
+#RUN wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
 # Add repository for specified Debian release if not already present in
 # sources.list
@@ -27,7 +27,7 @@ RUN apt-get update && apt-get install -y \
     #libpulse-dev libssl-dev libvorbis-dev libwebp-dev libwebsockets-dev \
     #ghostscript \
     xz-utils \
-    postgresql-${POSTGRES_VERSION} \
+    postgresql \
   && rm -rf /var/lib/apt/lists/*
 
 # Apply the s6-overlay
