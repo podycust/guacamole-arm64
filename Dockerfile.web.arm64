@@ -64,7 +64,7 @@ RUN set -x \
   && curl -SLk -o ${GUACAMOLE_HOME}/lib/postgresql-42.1.4.jar "https://jdbc.postgresql.org/download/postgresql-42.1.4.jar" \
   && curl -SLOk "http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/${GUAC_VER}/binary/guacamole-auth-jdbc-${GUAC_VER}.tar.gz" 
 
-ADD https://apache.org/dyn/closer.lua/guacamole/${GUAC_VER}binary/guacamole-auth-jdbc-${GUAC_VER}.tar.gz?action=download /tmp
+ADD https://apache.org/dyn/closer.lua/guacamole/${GUAC_VER}/binary/guacamole-auth-jdbc-${GUAC_VER}.tar.gz?action=download /tmp
 #http://apache.org/dyn/closer.cgi?action=download&filename=guacamole/${GUAC_VER}/binary/guacamole-auth-jdbc-${GUAC_VER}.tar.gz /tmp
 RUN ls /tmp
 RUN tar -xzf /tmp/guacamole-auth-jdbc-${GUAC_VER}.tar.gz \
