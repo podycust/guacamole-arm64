@@ -24,7 +24,7 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${ARCH}.tar.xz /tmp
 
 # Extract the scripts atthe container root
-RUN tar -C / -Jxpf /tmp/s6-overlay-${ARCH}.tar.xz
+RUN tar -C / -Jxpf /tmp/s6-overlay-${ARCH}.tar.xz \
   && mkdir -p ${GUACAMOLE_HOME} \
     ${GUACAMOLE_HOME}/lib \
     ${GUACAMOLE_HOME}/extensions
