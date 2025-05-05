@@ -47,10 +47,21 @@ RUN apt-get update && \
     rm -rf /var/lib/apt/lists/*
 
 # Apply the s6-overlay
-RUN curl -SLO "https://github.com/just-containers/s6-overlay/releases/download/v3.2.0.2/s6-overlay-${ARCH}.tar.xz" \
-  && tar -xf s6-overlay-${ARCH}.tar.xz -C / \
-  && tar -xf s6-overlay-${ARCH}.tar.xz -C /command ./bin \
-  && rm -rf s6-overlay-${ARCH}.tar.xz 
+#RUN curl -SLO "https://github.com/just-containers/s6-overlay/releases/download/v3.2.0.2/s6-overlay-${ARCH}.tar.xz" \
+#  && tar -xf s6-overlay-${ARCH}.tar.xz -C / \
+#  && tar -xf s6-overlay-${ARCH}.tar.xz -C /command ./bin \
+#  && rm -rf s6-overlay-${ARCH}.tar.xz 
+
+ ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+
+ # Extract the scripts at the container root
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+
+# Download the binaries to the temporal directory
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-${ARCH}.tar.xz /tmp
+
+# Extract the scripts atthe container root
+RUN tar -C / -Jxpf /tmp/s6-overlay-${ARCH}.tar.xz
 
 # Link FreeRDP to where guac expects it to be
 RUN [ "$ARCH" = "aarch64" ] && ln -s /usr/local/lib/freerdp /usr/lib/arm-linux-gnueabihf/freerdp || exit 0
