@@ -84,7 +84,7 @@ RUN set -xe \
     && rm -rf guacamole-${i}-${GUAC_VER} guacamole-${i}-${GUAC_VER}.tar.gz \
   ;done
 
-ENV PATH=/usr/lib/postgresql/${POSTGRES_VERSION}/bin:$PATH
+ENV PATH=/usr/lib/postgresql/${POSTGRES_VERSION}/bin:/command:$PATH
 ENV GUACAMOLE_HOME=/config/guacamole
 
 WORKDIR /config
