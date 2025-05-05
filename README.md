@@ -8,7 +8,7 @@ This project use the new arm/v8 architecture rather than v6 used in based repo.
 
 ```shell
 docker build \
-  --platform linux/arm/ \
+  --platform linux/arm \
   . \
   -f Dockerfile.guacd.arm64 \
   --platform linux/arm64/v8 \
