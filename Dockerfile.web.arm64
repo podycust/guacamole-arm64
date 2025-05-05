@@ -1,6 +1,7 @@
 FROM arm64v8/tomcat:9-jre21
 
 ENV ARCH=aarch64 \
+  S6_OVERLAY_VERSION="3.2.0.3" \
   GUAC_VER=1.5.5 \
   GUACAMOLE_HOME=/app/guacamole \
   GUACAMOLE_CTX_PATH=guacamole \
