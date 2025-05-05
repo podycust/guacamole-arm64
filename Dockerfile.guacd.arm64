@@ -23,6 +23,7 @@ RUN apt-get update && \
     libgcrypt-dev                 \
     libtool                       \
     curl \
+    xz-utils \
     freerdp2-dev \
     #freerdp3-dev \
     libcairo2-dev \
